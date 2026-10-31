@@ -1303,6 +1303,20 @@ if (pVal > 1.775 && pVal <= 1.8) {
     const exp = (start + t * (end - start));
     return `ℕ𖢣<sub>[🔄]</sub>${d(exp)}`;
   }
+ if (pVal >= 10 && pVal < 10.1) {
+    const t = (pVal - 10) / 0.1;
+    const start = 1.003;
+    const end = 10;
+    const exp = (start + t * (end - start));
+    return `ℕ𖢣𖢣${d(exp)}`;
+  }
+ if (pVal >= 10.1 && pVal < 10.2) {
+    const t = (pVal - 10.1) / 0.1;
+    const start = 1.003;
+    const end = 10.1;
+    const exp = (start + t * (end - start));
+    return `ℕ𖢣...𖢣[${d(exp)}]`;
+  }
   if (pVal == 1/0) {
     return `f<sup><span class="red">‽∞‽</span></sup>(<span class="red">‽(∞)</span>)`
   }
