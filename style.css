@@ -1,0 +1,362 @@
+:root{
+  --card:#ffffff;
+  --muted:#6b7280;
+  --accentA:#0f766e;
+  --accentB:#06b6d4;
+  --radius:14px;
+  
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+@font-face{
+  font-family: 'Unifont';
+  src: url('/Unifont.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+body{
+  margin:0;
+  font-family: "Unifont", "Times New Roman", Times, serif;
+  background: #000;
+  color: #ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition:background 400ms linear;
+  min-height:100vh;
+}
+/* container to constrain width and center content vertically */
+.app{
+  width:100%;
+  max-width:520px;
+  padding:0 16px;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:0;
+  background:transparent;
+  border-radius:0;
+  box-shadow:none;
+  overflow:visible;
+  min-height:100vh;
+}
+
+/* page-level p readout in top-left */
+.page-p{
+  position:fixed;
+  top:12px;
+  left:12px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  background:rgba(255,255,255,0.9);
+  padding:8px 10px;
+  border-radius:10px;
+  box-shadow:0 6px 18px rgba(6,22,22,0.06);
+  z-index:60;
+}
+.page-p .label.small{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em}
+.page-p .big{font-size:18px;font-weight:700;color:#ffffff;text-shadow:0 0 6px rgba(255,255,255,0.9), 0 0 18px rgba(255,255,255,0.25)}
+
+/* header (kept inline above center if present) */
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:12px 0;
+}
+.title{
+  font-weight:700;
+  color:#0f172a;
+  font-size:16px;
+}
+.subtitle{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* center content - single large number occupying available space */
+.center{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px 8px;
+  flex:1 1 auto;
+  min-height:0;
+}
+.big{
+  font-size:84px;
+  font-weight:800;
+  color:#ffffff;
+  text-align:center;
+  line-height:1;
+  padding:6px 10px;
+  word-break:break-word;
+  max-width:100%;
+  text-shadow: 0 0 12px rgba(255,255,255,0.95), 0 0 36px rgba(255,255,255,0.25);
+}
+.big.big-center{
+  width:100%;
+}
+
+/* controls bar pinned to bottom for easy access */
+.controls{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:12px;
+  z-index:70;
+  width:calc(100% - 32px);
+  max-width:520px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  background:rgba(255,255,255,0.94);
+  padding:10px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(6,22,22,0.08);
+  backdrop-filter: blur(6px);
+  flex-wrap:wrap;
+  box-sizing:border-box;
+}
+.controls-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-width:0;
+  margin:0;
+}
+
+/* row inside a group */
+.group-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+#flip {
+  transform: rotate(180deg);
+}
+/* generic button styles */
+.btn{
+  background:linear-gradient(180deg,var(--accentA),var(--accentB));
+  color:white;
+  border:0;
+  padding:10px 12px;
+  border-radius:10px;
+  font-weight:700;
+  min-width:90px;
+  box-shadow:0 6px 18px rgba(6,22,22,0.08);
+}
+
+/* smaller variant for compact actions */
+.btn.small{min-width:72px;padding:8px 10px}
+
+/* compact donate button override: smaller footprint, tighter padding and slightly reduced radius */
+#donateBtn{
+  min-width:48px;
+  padding:6px 8px;
+  font-size:13px;
+  border-radius:8px;
+  box-shadow:0 4px 12px rgba(6,22,22,0.06);
+}
+
+/* alternate button (pause) */
+.btn.alt{background:#475569}
+
+/* labels and inputs */
+.speed-label{
+  font-size:12px;
+  color:var(--muted);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  margin-right:4px;
+}
+
+/* unify number inputs */
+.controls input[type="number"]{
+  width:96px;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid rgba(12,15,20,0.06);
+  background:white;
+  font-weight:700;
+  text-align:center;
+  font-size:14px;
+  -moz-appearance:textfield;
+}
+
+/* remove spin buttons */
+.controls input[type="number"]::-webkit-outer-spin-button,
+.controls input[type="number"]::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* responsive tweaks for small screens */
+@media (max-width:520px){
+  .big{font-size:56px}
+  .controls{padding:8px; gap:8px;}
+  .btn{min-width:72px;padding:8px 10px}
+  .controls input[type="number"]{width:84px}
+}
+
+
+
+/* small "coming soon" note placed below the celebratory message */
+.soon-msg{
+  position:fixed;
+  top:36px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:84;
+  background:rgba(255,255,255,0.88);
+  color:#0f172a;
+  padding:6px 10px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:12px;
+  box-shadow:0 5px 12px rgba(0,0,0,0.18);
+  text-align:center;
+  max-width:calc(100% - 96px);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* "Thanks" notification (top-center) */
+.thanks{
+  position:fixed;
+  top:88px;
+  left:50%;
+  transform:translateX(-50%) translateY(-8px);
+  z-index:86;
+  background:linear-gradient(180deg,#ffb86b,#ff7b72);
+  color:#0a0a0a;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:800;
+  font-size:13px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+  opacity:0;
+  pointer-events:none;
+  transition:transform 300ms cubic-bezier(.2,.9,.2,1), opacity 300ms ease;
+  -webkit-font-smoothing:antialiased;
+  display:inline-block;
+  max-width:calc(100% - 64px);
+  text-align:center;
+}
+
+
+
+/* visible state */
+.thanks.visible{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+  pointer-events:auto;
+}
+
+/* subtle pulse while visible */
+@keyframes thanks-pulse {
+  0% { box-shadow:0 8px 20px rgba(255,120,80,0.18); transform:translateX(-50%) translateY(0) scale(1); }
+  50% { box-shadow:0 14px 36px rgba(255,120,80,0.26); transform:translateX(-50%) translateY(-2px) scale(1.01); }
+  100% { box-shadow:0 8px 20px rgba(255,120,80,0.18); transform:translateX(-50%) translateY(0) scale(1); }
+}
+.thanks.visible { animation: thanks-pulse 2.2s ease-in-out infinite; }
+
+
+/* persistent notification banner for credit notice */
+.notice{
+  position:fixed;
+  top:40px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:80;
+  background:rgba(0,0,0,0.925);
+  color: rgba(255,255,255,1-0.85);
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:700;
+  font-size:13px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.05) inset;
+  backdrop-filter: blur(6px);
+  text-align:center;
+  max-width:calc(100% - 48px);
+  -webkit-font-smoothing:antialiased;
+}
+
+
+
+/* rainbow highlight for smths */
+.rainbow{
+  font-weight:900;
+  /* remove the heavy multi-stop gradient since we animate solid color cycling */
+  background: none;
+  color: #ff0000; /* start red by default */
+  display: inline-block;
+  animation: rainbow-cycle 2s linear infinite;
+  /* stronger glow when color is bright */
+  text-shadow:
+    0 0 6px rgba(255,80,0,0.9),
+    0 0 18px rgba(255,160,50,0.65),
+    0 0 36px rgba(255,200,80,0.35);
+  padding: 0 2px;
+  border-radius: 4px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* subtle animated gradient shift */
+@keyframes rainbow-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* new: cycle solid text color with glow — red -> orange -> yellow -> green -> back to red
+   2s total duration gives ~0.5s between the primary color changes as requested */
+@keyframes rainbow-cycle {
+  0%   { color: #ff0000; text-shadow: 0 0 8px rgba(255,0,0,0.95), 0 0 20px rgba(255,80,0,0.6); } /* red */
+  25%  { color: #ff7f00; text-shadow: 0 0 10px rgba(255,127,0,0.95), 0 0 24px rgba(255,160,50,0.55); } /* orange (≈0.5s) */
+  50%  { color: #ffff00; text-shadow: 0 0 12px rgba(255,255,0,0.9), 0 0 28px rgba(255,220,80,0.45); } /* yellow (≈1.0s) */
+  75%  { color: #00ff44; text-shadow: 0 0 14px rgba(0,255,68,0.9), 0 0 30px rgba(80,255,140,0.35); } /* green (≈1.5s) */
+  100% { color: #ff0000; text-shadow: 0 0 8px rgba(255,0,0,0.95), 0 0 20px rgba(255,80,0,0.6); } /* back to red (≈2.0s) */
+}
+
+/* Utility color classes with matching glow for quick usage */
+.red    { color: #ff3b30; text-shadow: 0 0 8px rgba(255,59,48,0.95), 0 0 20px rgba(255,120,100,0.45); }
+.orange { color: #ff7f00; text-shadow: 0 0 8px rgba(255,127,0,0.95), 0 0 20px rgba(255,165,80,0.42); }
+.yellow { color: #ffd60a; text-shadow: 0 0 10px rgba(255,214,10,0.92), 0 0 24px rgba(255,230,120,0.35); }
+.green  { color: #00c853; text-shadow: 0 0 10px rgba(0,200,83,0.92), 0 0 24px rgba(100,230,160,0.32); }
+.blue   { color: #0a84ff; text-shadow: 0 0 10px rgba(10,132,255,0.92), 0 0 24px rgba(120,180,255,0.28); }
+.indigo { color: #5e5ce6; text-shadow: 0 0 10px rgba(94,92,230,0.88), 0 0 24px rgba(140,120,240,0.26); }
+.violet { color: #bf5af2; text-shadow: 0 0 10px rgba(191,90,242,0.88), 0 0 24px rgba(220,150,255,0.24); }
+.pink   { color: #ff2d95; text-shadow: 0 0 10px rgba(255,45,149,0.92), 0 0 24px rgba(255,140,200,0.28); }
+
+/* left-aligned center layout when user toggles Text: Left */
+.center.align-left{
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px 16px;
+  text-align: left;
+}
+
+/* ensure the big centered number flows correctly in left mode */
+.center.align-left .big.big-center{
+  width:100%;
+  max-width:100%;
+  text-align:left;
+  padding-left:6px;
+  word-break:break-word;
+}
+
+/* Slightly reduce the large font size on very small screens when left-aligned to avoid wrapping off-screen */
+@media (max-width:420px){
+  .center.align-left .big { font-size:48px; padding-left:4px; }
+}
