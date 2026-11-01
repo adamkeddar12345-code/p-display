@@ -1317,8 +1317,15 @@ if (pVal > 1.775 && pVal <= 1.8) {
     const exp = (start + t * (end - start));
     return `ℕ𖢣...𖢣[${d(exp)}]`;
   }
+ if (pVal >= 10.2 && pVal < 10.22) {
+    const t = (pVal - 10.2) / 0.02;
+    const start = 1.003;
+    const end = 10.21;
+    const exp = (start + t * (end - start));
+    return `p[${d(exp)}]`;
+  }
  // beyond p 
- if (pVal > 10.2 && pVal <= 10.25) {
+ if (pVal > 10.22 && pVal <= 10.25) {
     const t = (pVal - 10.2) / 0.05;
     const start = 10;
     const end = 1e10;
