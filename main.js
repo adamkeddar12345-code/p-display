@@ -1341,9 +1341,9 @@ if (pVal > 1.775 && pVal <= 1.8) {
     return `p[${(Math.floor(exp)+"🔂").replace("1🔂", "🔂")}${d(exp%1 * 10.3)}]`;
       }
   if (pVal >= 10.35 && pVal < 10.4) {
-    const t = (pVal - 10.1) / 0.1;
+    const t = (pVal - 10.35) / 0.05;
     const start = 1.003;
-    const end = 10.1;
+    const end = 10.35;
     const exp = (start + t * (end - start));
     return `p[${d(exp)}🔂1]`;
   }
