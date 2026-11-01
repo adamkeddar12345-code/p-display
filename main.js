@@ -1340,22 +1340,7 @@ if (pVal > 1.775 && pVal <= 1.8) {
     const concat = "⏹".repeat(exp - 1) + d(exp%1 * 9.15 +1)
     return `p[${concat}]`;
    }
-  if (pVal >= 10.4 && pVal < 10.5) {
-    const t = (pVal - 10.4) / 0.1;
-    const start = 2.0;
-    const end = 5;
-    const exp = (start + (end-start)*t);
-    const concat = "⏺".repeat(exp - 1) + d(exp%1 * 9.25 +1)
-    return `p[${concat}]`;
- }
-  if (pVal >= 10.5 && pVal < 10.6) {
-    const t = (pVal - 10.5) / 0.1;
-    const start = 2.0;
-    const end = 5;
-    const exp = (start + (end-start)*t);
-    const concat = "🔂".repeat(exp - 1) + d(exp%1 * 9.35 +1)
-    return `p[${concat}]`;
-   }
+ 
   if (pVal == 1/0) {
     return `f<sup><span class="red">‽∞‽</span></sup>(<span class="red">‽(∞)</span>)`
   }
