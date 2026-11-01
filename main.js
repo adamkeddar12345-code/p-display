@@ -1319,7 +1319,7 @@ if (pVal > 1.775 && pVal <= 1.8) {
   }
  // beyond p 
  if (pVal > 10.2 && pVal <= 10.25) {
-    const t = (pVal - 10.25) / 0.05;
+    const t = (pVal - 10.2) / 0.05;
     const start = 10;
     const end = 1e10;
     const k = Math.max(10, Math.round(start * Math.pow(end / start, t)));
