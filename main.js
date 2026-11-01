@@ -1318,19 +1318,19 @@ if (pVal > 1.775 && pVal <= 1.8) {
     return `ℕ𖢣...𖢣[${d(exp)}]`;
   }
  // beyond p 
- if (pVal >= 10.2 && pVal < 10.3) {
+ if (pVal > 10.2 && pVal <= 10.3) {
     const t = (pVal - 10.2) / 0.1;
-    const start = 1.01;
-    const end = 10.29;
-    const exp = (start + t * (end - start));
-    return `p[${d(exp)}]`;
+    const start = 10;
+    const end = 10000000000;
+    const k = Math.max(10, Math.round(start * Math.pow(end / start, t)));
+    return `p[${k}]`;
   }
- if (pVal >= 10.3 && pVal < 10.5) {
-    const t = (pVal - 10.3) / 0.2;
-    const start = 1.01;
-    const end = 10.39;
-    const exp = (start + t * (end - start));
-    return `p[[${d(exp)}]]`;
+ if (pVal > 10.3 && pVal <= 10.4) {
+    const t = (pVal - 10.3) / 0.1;
+    const start = 2.2;
+    const end = 10;
+    const k = (start * Math.pow(end / start, t));
+    return `p[${"<sub>🔁</sub>".repeat(Math.floor(k))}${Math.floor(10**(10**(k%1.0)))}]`;
   }
   if (pVal == 1/0) {
     return `f<sup><span class="red">‽∞‽</span></sup>(<span class="red">‽(∞)</span>)`
