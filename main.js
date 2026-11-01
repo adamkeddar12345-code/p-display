@@ -1347,7 +1347,6 @@ if (pVal > 1.775 && pVal <= 1.8) {
     const exp = (start + (end-start)*t);
     const concat = "⏺".repeat(exp - 1) + d(exp%1 * 9.25 +1)
     return `p[${concat}]`;
-   }
  }
   if (pVal >= 10.5 && pVal < 10.6) {
     const t = (pVal - 10.5) / 0.1;
