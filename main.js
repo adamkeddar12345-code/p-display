@@ -1332,7 +1332,13 @@ if (pVal > 1.775 && pVal <= 1.8) {
     const k = (start * Math.pow(end / start, t));
     return `p[${"<sub>🔁</sub>".repeat(Math.floor(k))}${Math.floor(10**(10**(k%1.0)))}]`;
   }
- 
+ if (pVal >= 10.3 && pVal < 10.35) {
+    const t = (pVal - 10.3) / 0.05;
+    const start = 0;
+    const end = 3;
+    const exp = 10**(start + t * (end - start));
+    return `p[${(Math.floor(exp)+"🔂").replace("1🔂", "🔂")}${d(exp%1 * 10.3)}]`;
+  }
   if (pVal == 1/0) {
     return `f<sup><span class="red">‽∞‽</span></sup>(<span class="red">‽(∞)</span>)`
   }
