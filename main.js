@@ -1346,6 +1346,20 @@ if (pVal > 1.775 && pVal <= 1.8) {
     const exp = (start + t * (end - start));
     return `p[${d(exp)}🔂1]`;
   }
+ if (pVal >= 10.4 && pVal < 10.45) {
+    const t = (pVal - 10.4) / 0.05;
+    const start = 0;
+    const end = 3;
+    const exp = 10**(start + t * (end - start));
+    return `p[${(Math.floor(exp)+"<sub>2</sub>🔁").replace("1<sub>2</sub>🔁", "<sub>2</sub>🔁")}${d(exp%1 * 10.4)}]`;
+      }
+  if (pVal >= 10.45 && pVal < 10.5) {
+    const t = (pVal - 10.45) / 0.05;
+    const start = 1.003;
+    const end = 10.4;
+    const exp = (start + t * (end - start));
+    return `p[${d(exp)}<sub>2</sub>🔁1]`;
+  }
   if (pVal == 1/0) {
     return `f<sup><span class="red">‽∞‽</span></sup>(<span class="red">‽(∞)</span>)`
   }
