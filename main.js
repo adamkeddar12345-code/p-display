@@ -361,7 +361,7 @@ function idkwhattonamethis(n, ind){
     const start = 1;
     const end = 1000;
     const exp = (start * (end / start)**t);
-    return `<sub>${Math.floor(exp)}</sub>${input}+${totheafn((exp%1 *(ind)) %1, Math.floor(exp%1 *(ind)))}`;
+    return `<sub>${Math.floor(exp)}</sub>${input}+${idkwhattonamethis((exp%1 *(ind)) %1, Math.floor(exp%1 *(ind)))}`;
   } else {
     const t = (n - 0.5) / 0.5
     return `${input}<sup>${idkwhattonamethis((t*ind)%1, Math.floor(t*ind))}</sup>`
