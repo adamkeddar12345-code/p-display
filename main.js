@@ -1376,12 +1376,19 @@ if (pVal > 1.775 && pVal <= 1.8) {
   if (pVal >= 10.45 && pVal < 10.5) {
     const t = (pVal - 10.45) / 0.05;
     const start = 1.003;
-    const end = 10.4;
+    const end = 10.45;
     const exp = (start + t * (end - start));
     return `p[${d(exp)}<sub>2</sub>🔁1]`;
-  }
- if (pVal >= 10.5 && pVal < 10.6) {
-    const t = (pVal - 10.5) / 0.1;
+   }
+  if (pVal >= 10.5 && pVal < 10.55) {
+    const t = (pVal - 10.5) / 0.05;
+    const start = 1.003;
+    const end = 10.5;
+    const exp = (start + t * (end - start));
+    return `p[1<sub>${d(exp)}</sub>🔁1]`;
+ }
+ if (pVal >= 10.55 && pVal < 10.65) {
+    const t = (pVal - 10.55) / 0.1;
     const start = 1;
     const end = 11.999;
     const exp = (start * (end/start)**t);
