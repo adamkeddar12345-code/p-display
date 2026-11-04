@@ -347,12 +347,11 @@ function totheafn(n, ind){
     return `${input}<sup>${totheafn((t*ind)%1, Math.floor(t*ind))}</sup>`
   }
 }
-
-function idkwhattonamethis(n, ind){
+function missingthep(n, ind){
   // ensure ind has a usable default (1) and declare colors locally
   ind = (typeof ind === 'undefined' || ind === null) ? 0 : ind;
   const colors = ["p<sup>ಥ</sup>⚜[1]", "p🔳￣﹃￣🔲[1]", "p🌐<sub>🔅</sub>[1]", "p✨皿▔[1]"]; // JS is 0-indexed
-  const input = (typeof colors[ind-1] === 'undefined' || colors[ind-1] === null) ? `p<sup>🎞</sup>-${ind}-`: colors[ind-1]
+  const input = (typeof colors[ind-1] === 'undefined' || colors[ind-1] === null) ? `[ꗈ<sub>${ind}</sub>]`: colors[ind-1]
   if (ind == 0) {
     return d(1 + n*5.8)
   }
@@ -361,12 +360,14 @@ function idkwhattonamethis(n, ind){
     const start = 1;
     const end = 1000;
     const exp = (start * (end / start)**t);
-    return `<sub>${Math.floor(exp)}</sub>${input}+${idkwhattonamethis((exp%1 *(ind)) %1, Math.floor(exp%1 *(ind)))}`;
+    return `<sub>${Math.floor(exp)}</sub>${input}+${missingthep((exp%1 *(ind)) %1, Math.floor(exp%1 *(ind)))}`;
   } else {
     const t = (n - 0.5) / 0.5
-    return `${input}<sup>${idkwhattonamethis((t*ind)%1, Math.floor(t*ind))}</sup>`
+    return `${input}<sup>${missingthep((t*ind)%1, Math.floor(t*ind))}</sup>`
   }
 }
+
+
 function formatNum(n){
   if (typeof n === 'string') return n;
   if (Number.isInteger(n)) return String(n);
@@ -1381,10 +1382,10 @@ if (pVal > 1.775 && pVal <= 1.8) {
   }
  if (pVal >= 10.5 && pVal < 10.6) {
     const t = (pVal - 10.5) / 0.1;
-    const start = 0;
+    const start = 1;
     const end = 11.999;
     const exp = (start * (end/start)**t);
-    return idkwhattonamethis(exp%1, Math.floor(exp)+1);
+    return missingthep(exp%1, Math.floor(exp)+1);
   }
   if (pVal == 1/0) {
     return `f<sup><span class="red">‽∞‽</span></sup>(<span class="red">‽(∞)</span>)`
