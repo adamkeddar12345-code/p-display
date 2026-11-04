@@ -360,16 +360,12 @@ function idkwhattonamethis(n, ind){
     const start = 1;
     const end = 10000;
     const exp = (start * (end / start)**t);
-    return `<sub>${Math.floor(exp)}</sub>${input}+${idkwhattonamethis((exp%1 *(ind)) %1, Math.floor(exp%1 *(ind)))}`;
-  } else {
+    return `<sub>${Math.floor(exp)}🔁</sub>${input}+${idkwhattonamethis((exp%1 *(ind)) %1, Math.floor(exp%1 *(ind)))}`;
+   } else {
     const t = (n - 0.5) / 0.5
     return `${input}<sub>${idkwhattonamethis((t*ind)%1, Math.floor(t*ind))}</sub>`
-  } else {
-    const t = (n - 0.5) / 0.5
-    return `${input}${idkwhattonamethis((t*ind)%1, Math.floor(t*ind))} =🔁=`
   }
 }
-
 function formatNum(n){
   if (typeof n === 'string') return n;
   if (Number.isInteger(n)) return String(n);
@@ -1384,10 +1380,10 @@ if (pVal > 1.775 && pVal <= 1.8) {
   }
  if (pVal >= 10.5 && pVal < 10.6) {
     const t = (pVal - 10.5) / 0.1;
-    const start = 1;
+    const start = 0;
     const end = 11.999;
     const exp = (start * (end/start)**t);
-    return idkwhattonamethis(exp%1, Math.floor(exp));
+    return idkwhattonamethis(exp%1, Math.floor(exp)+1);
   }
   if (pVal == 1/0) {
     return `f<sup><span class="red">‽∞‽</span></sup>(<span class="red">‽(∞)</span>)`
