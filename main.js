@@ -347,6 +347,28 @@ function totheafn(n, ind){
     return `${input}<sup>${totheafn((t*ind)%1, Math.floor(t*ind))}</sup>`
   }
 }
+function idkwhattonamethis(n, ind){
+  // ensure ind has a usable default (1) and declare colors locally
+  ind = (typeof ind === 'undefined' || ind === null) ? 0 : ind;
+  const colors = ["p<sup>ಥ</sup>⚜[1]", "p🔳￣﹃￣🔲[1]", "p🌐<sub>🔅</sub>[1]", "p✨皿▔[1]"]; // JS is 0-indexed
+  const input = (typeof colors[ind-1] === 'undefined' || colors[ind-1] === null) ? `p<sup>🎞</sup>-${ind}-`: colors[ind-1]
+  if (ind == 0) {
+    return d(1 + n*5.8)
+  }
+  if (n < 0.5) {
+    const t = n*2;
+    const start = 1;
+    const end = 10000;
+    const exp = (start * (end / start)**t);
+    return `<sub>${Math.floor(exp)}</sub>${input}+${idkwhattonamethis((exp%1 *(ind)) %1, Math.floor(exp%1 *(ind)))}`;
+  } else {
+    const t = (n - 0.5) / 0.5
+    return `${input}<sub>${idkwhattonamethis((t*ind)%1, Math.floor(t*ind))}</sub>`
+  } else {
+    const t = (n - 0.5) / 0.5
+    return `${input}${idkwhattonamethis((t*ind)%1, Math.floor(t*ind))} =🔁=`
+  }
+}
 
 function formatNum(n){
   if (typeof n === 'string') return n;
@@ -1359,6 +1381,13 @@ if (pVal > 1.775 && pVal <= 1.8) {
     const end = 10.4;
     const exp = (start + t * (end - start));
     return `p[${d(exp)}<sub>2</sub>🔁1]`;
+  }
+ if (pVal >= 10.5 && pVal < 10.6) {
+    const t = (pVal - 10.5) / 0.1;
+    const start = 1;
+    const end = 11.999;
+    const exp = (start * (end/start)**t);
+    return idkwhattonamethis(exp%1, Math.floor(exp));
   }
   if (pVal == 1/0) {
     return `f<sup><span class="red">‽∞‽</span></sup>(<span class="red">‽(∞)</span>)`
